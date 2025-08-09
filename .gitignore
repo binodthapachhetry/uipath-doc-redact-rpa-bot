@@ -16,3 +16,12 @@ input/
 
 # Packages
 *.nupkg
+._Main.xaml
+
+artifacts/
+**/project.json.user
+**/.local/
+**/packages/
+**/Logs/
+**/Temp/
+*.local
