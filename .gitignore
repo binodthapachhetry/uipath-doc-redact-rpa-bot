@@ -1,9 +1,17 @@
 
-################################################################################
-# Added by UiPath Studio
-# Prevent caching and local artifacts from being committed
-################################################################################
-.local
-################################################################################
-# End of UiPath Studio common ignores
-################################################################################
+# UiPath generated folders
+.local/
+.settings/
+.screenshots/
+.cache/
+.project/
+.tmh/
+user.config
+
+# Output & logs
+logs/
+output/
+input/
+
+# Packages
+*.nupkg
