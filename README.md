@@ -39,6 +39,7 @@ Configuration files (`ref/*`) and logging/metrics are integrated into the proces
 
 ## Repository Structure
 
+```
 .
 ├── input/           # Folder for incoming PDF files to process
 ├── output/          # Folder for redacted PDFs & Excel registry
@@ -49,7 +50,7 @@ Configuration files (`ref/*`) and logging/metrics are integrated into the proces
 ├── Main.xaml        # Main process workflow
 ├── project.json     # UiPath project settings
 └── README.md        # This file
-
+```
 
 ---
 
