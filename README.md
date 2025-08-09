@@ -27,6 +27,16 @@ It features **human-in-the-loop validation**, **configurable detection rules**, 
 
 ---
 
+## Architecture
+
+![Secure Document Redaction Bot – High-Level Architecture](docs/architecture_diagram.png)
+
+This diagram shows the end-to-end workflow of the bot, from PDF intake to redaction, output, and optional notification.  
+The process supports both **automatic processing** for high-confidence detections and a **human-in-the-loop (HITL)** review for low-confidence cases.  
+Configuration files (`ref/*`) and logging/metrics are integrated into the process for auditability and maintainability.
+
+---
+
 ## Repository Structure
 
 .
@@ -40,7 +50,6 @@ It features **human-in-the-loop validation**, **configurable detection rules**, 
 ├── project.json     # UiPath project settings
 └── README.md        # This file
 
-````
 
 ---
 
@@ -60,10 +69,10 @@ It features **human-in-the-loop validation**, **configurable detection rules**, 
 ## Installation & Setup
 
 ### 1. Clone or download the repository
-```bash
+bash
 git clone https://github.com/<your-username>/<your-repo>.git
 cd <your-repo>
-````
+
 
 Or download the ZIP from GitHub and extract it.
 
@@ -115,7 +124,7 @@ Or download the ZIP from GitHub and extract it.
 
 ## Example Workflow Diagram
 
-```
+
 [ Intake PDFs ] 
        ↓
 [ Classify Doc Type ]
@@ -129,7 +138,7 @@ Or download the ZIP from GitHub and extract it.
 [ Apply Redactions ]
        ↓
 [ Save Outputs + Audit ]
-```
+
 
 ---
 
@@ -160,9 +169,3 @@ Or download the ZIP from GitHub and extract it.
 
 This project is provided for demonstration purposes only.
 It contains **no real PHI/PII** and should not be used with sensitive data without additional security and compliance review.
-
-```
-
----
-
-```
