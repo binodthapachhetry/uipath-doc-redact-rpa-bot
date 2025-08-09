@@ -1,0 +1,9 @@
+DocName,ContainsSSN,ContainsDOB,ContainsEmail,ContainsPhone,ContainsAddress,Kind
+R01_REALISTIC_SparsePHI_2pgs.pdf,0,0,1,0,0,realistic
+R02_REALISTIC_ModeratePHI_3pgs.pdf,0,1,1,1,1,realistic
+R03_REALISTIC_HeavyPHI_3pgs.pdf,1,1,1,1,1,realistic
+R04_REALISTIC_SSN_LookalikePresent_2pgs.pdf,0,0,1,1,0,realistic
+R05_REALISTIC_VIN_and_IP_3pgs.pdf,0,0,1,0,0,realistic
+R06_REALISTIC_ISO_DOS_and_PlainPhone_2pgs.pdf,0,0,1,1,0,realistic
+R07_REALISTIC_AddressHeaderOnly_3pgs.pdf,0,0,1,1,1,realistic
+R08_REALISTIC_ScatteredPHI_4pgs.pdf,0,1,1,1,1,realistic
