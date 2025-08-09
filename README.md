@@ -1,8 +1,5 @@
 
 
----
-
-```markdown
 # Secure Document Redaction Bot (UiPath RPA POC)
 
 ## Overview
@@ -31,7 +28,6 @@ It features **human-in-the-loop validation**, **configurable detection rules**, 
 ---
 
 ## Repository Structure
-```
 
 .
 ├── input/           # Folder for incoming PDF files to process
