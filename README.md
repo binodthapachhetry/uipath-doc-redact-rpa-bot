@@ -41,15 +41,17 @@ Configuration files (`ref/*`) and logging/metrics are integrated into the proces
 
 ```
 .
-├── input/           # Folder for incoming PDF files to process
-├── output/          # Folder for redacted PDFs & Excel registry
-├── logs/            # Folder for JSONL audit logs
-├── ref/             # Reference data (regex patterns, keyword lists)
-├── samples/         # Synthetic/public PDFs for testing
-├── DetectPHI.xaml   # Workflow for identifying PHI/PII in text
-├── Main.xaml        # Main process workflow
-├── project.json     # UiPath project settings
-└── README.md        # This file
+├── input/ # Folder for incoming PDF files to process
+├── output/ # Folder for redacted PDFs & Excel registry
+├── logs/ # Folder for JSONL audit logs
+├── ref/ # Reference data (regex patterns, keyword lists)
+├── samples/ # Synthetic/public PDFs for testing
+├── docs/ # Documentation assets (diagrams, images)
+│ └── architecture_diagram.svg # High-level architecture diagram
+├── DetectPHI.xaml # Workflow for identifying PHI/PII in text
+├── Main.xaml # Main process workflow
+├── project.json # UiPath project settings
+└── README.md # This file
 ```
 
 ---
@@ -69,10 +71,8 @@ Configuration files (`ref/*`) and logging/metrics are integrated into the proces
 
 ## Installation & Setup
 
-### 1. Clone or download the repository
-bash
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+### 1. Clone the repository
+git clone https://github.com/binodthapachhetry/uipath-doc-redact-rpa-bot.git
 
 
 Or download the ZIP from GitHub and extract it.
@@ -125,7 +125,8 @@ Or download the ZIP from GitHub and extract it.
 
 ## Example Workflow Diagram
 
-
+```
+.
 [ Intake PDFs ] 
        ↓
 [ Classify Doc Type ]
@@ -139,7 +140,7 @@ Or download the ZIP from GitHub and extract it.
 [ Apply Redactions ]
        ↓
 [ Save Outputs + Audit ]
-
+```
 
 ---
 
