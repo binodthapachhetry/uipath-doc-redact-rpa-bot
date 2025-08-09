@@ -29,7 +29,7 @@ It features **human-in-the-loop validation**, **configurable detection rules**, 
 
 ## Architecture
 
-![Secure Document Redaction Bot – High-Level Architecture](docs/architecture_diagram.png)
+![Secure Document Redaction Bot – High-Level Architecture](docs/architecture_diagram.svg)
 
 This diagram shows the end-to-end workflow of the bot, from PDF intake to redaction, output, and optional notification.  
 The process supports both **automatic processing** for high-confidence detections and a **human-in-the-loop (HITL)** review for low-confidence cases.  
