@@ -4,6 +4,11 @@
   "description": "Senior-level FOIA/Privacy PHI/PII Redactor & Triage Bot",
   "main": "Main.xaml",
   "dependencies": {
+    "UiPath.Excel.Activities": "[3.1.1]",
+    "UiPath.Form.Activities": "[25.4.3]",
+    "UiPath.Mail.Activities": "[2.2.10]",
+    "UiPath.PDF.Activities": "[3.22.1]",
+    "UiPath.Persistence.Activities": "[1.7.1]",
     "UiPath.System.Activities": "[25.6.1]"
   },
   "webServices": [],
