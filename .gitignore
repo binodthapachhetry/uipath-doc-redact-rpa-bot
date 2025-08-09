@@ -16,3 +16,4 @@ input/
 
 # Packages
 *.nupkg
+._Main.xaml
