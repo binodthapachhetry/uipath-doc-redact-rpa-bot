@@ -9,7 +9,8 @@
     "UiPath.Mail.Activities": "[2.2.10]",
     "UiPath.PDF.Activities": "[3.22.1]",
     "UiPath.Persistence.Activities": "[1.7.1]",
-    "UiPath.System.Activities": "[25.6.1]"
+    "UiPath.System.Activities": "[25.6.1]",
+    "UiPath.WebAPI.Activities": "[2.0.0-preview]"
   },
   "webServices": [],
   "entitiesStores": [],
