@@ -13,6 +13,8 @@ user.config
 logs/
 output/
 input/
+input_original/
+input_realistic/
 
 # Packages
 *.nupkg
