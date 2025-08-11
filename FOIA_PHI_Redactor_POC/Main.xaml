@@ -136,8 +136,12 @@
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="953.2,1739.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="868.4000000000001,2028.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="docName" />
+      <Variable x:TypeArguments="x:Boolean" Name="wasReviewed" />
+      <Variable x:TypeArguments="sd:DataTable" Name="reviewedHitsDT" />
+      <Variable x:TypeArguments="x:String" Name="reasonsJoined" />
       <Variable x:TypeArguments="x:String" Name="workbookPath" />
       <Variable x:TypeArguments="x:String" Name="status" />
       <Variable x:TypeArguments="x:String" Name="redactedPath" />
@@ -147,33 +151,41 @@
       <Variable x:TypeArguments="x:String" Name="rawText" />
       <Variable x:TypeArguments="x:String" Name="filePath" />
       <Variable x:TypeArguments="x:String" Name="manifestPath" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="reasons">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">InvokeWorkflowFile_2</x:String>
+            <x:String x:Key="SourcePropertyName">reasons</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If Not System.IO.Directory.Exists(OutputDir) Then System.IO.Directory.CreateDirectory(OutputDir)&#xA;If Not System.IO.Directory.Exists(LogDir) Then System.IO.Directory.CreateDirectory(LogDir)&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If Not System.IO.Directory.Exists(OutputDir) Then System.IO.Directory.CreateDirectory(OutputDir)&#xA;If Not System.IO.Directory.Exists(LogDir) Then System.IO.Directory.CreateDirectory(LogDir)&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="504,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
       <ui:InvokeCode.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="OutputDir">[OutputDir]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="LogDir">[LogDir]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each filePath" sap:VirtualizedContainerService.HintSize="486.4,1519.2" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[System.IO.Directory.GetFiles(InputDir, &quot;*.pdf&quot;)]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each filePath" sap:VirtualizedContainerService.HintSize="504,1808.8" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[System.IO.Directory.GetFiles(InputDir, &quot;*.pdf&quot;)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="filePath" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,1397.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="502.4,1687.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text" FileName="[filePath]" sap:VirtualizedContainerService.HintSize="451.2,115.2" sap2010:WorkflowViewState.IdRef="ReadPDFText_3" Range="All" Text="[rawText]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;rawText length = &quot; + If(rawText Is Nothing, &quot;null&quot;, rawText.Length.ToString)]" />
-            <Assign sap:VirtualizedContainerService.HintSize="451.2,113.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text" FileName="[filePath]" sap:VirtualizedContainerService.HintSize="468.8,115.2" sap2010:WorkflowViewState.IdRef="ReadPDFText_3" Range="All" Text="[rawText]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="468.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;rawText length = &quot; + If(rawText Is Nothing, &quot;null&quot;, rawText.Length.ToString)]" />
+            <Assign sap:VirtualizedContainerService.HintSize="468.8,113.6" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[rawText]</OutArgument>
               </Assign.To>
@@ -181,31 +193,31 @@
                 <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(rawText, "[\u2010-\u2015]", "-")]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DetectPHI - Invoke Workflow File (Workflows\DetectPHI.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\DetectPHI.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DetectPHI - Invoke Workflow File (Workflows\DetectPHI.xaml)" sap:VirtualizedContainerService.HintSize="468.8,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\DetectPHI.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="hitsDT">[hitsDT]</OutArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="refDir">[RefDir]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="rawText">[rawText]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ScoreConfidence - Invoke Workflow File (Workflows\ScoreConfidence.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\ScoreConfidence.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ScoreConfidence - Invoke Workflow File (Workflows\ScoreConfidence.xaml)" sap:VirtualizedContainerService.HintSize="468.8,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\ScoreConfidence.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <OutArgument x:TypeArguments="x:Double" x:Key="confidence">[confidence]</OutArgument>
-                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="reasons" />
+                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="reasons">[reasons]</OutArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="docType">General</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="rawText">[rawText]</InArgument>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="hitsDT">[hitsDT]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <If Condition="[confidence &gt; ConfidenceThreshold]" sap:VirtualizedContainerService.HintSize="451.2,582.4" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[confidence &gt; ConfidenceThreshold]" sap:VirtualizedContainerService.HintSize="468.8,872" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="467.2,227.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RedactAndSave - Invoke Workflow File (Workflows\RedactAndSave.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\RedactAndSave.xaml">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RedactAndSave - Invoke Workflow File (Workflows\RedactAndSave.xaml)" sap:VirtualizedContainerService.HintSize="433.6,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\RedactAndSave.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
                       <OutArgument x:TypeArguments="x:String" x:Key="manifestPath">[manifestPath]</OutArgument>
                       <OutArgument x:TypeArguments="x:String" x:Key="redactedPath">[redactedPath]</OutArgument>
@@ -218,13 +230,31 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="467.2,515.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;PHI/PII detection is not confident for :&quot; + filePath]" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;PHI/PII detection is not confident for :&quot; + filePath]" />
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="HumanReviewForm - Invoke Workflow File (Workflows\HumanReviewForm.xaml)" sap:VirtualizedContainerService.HintSize="433.6,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\HumanReviewForm.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <OutArgument x:TypeArguments="x:Boolean" x:Key="out_wasReviewed">[wasReviewed]</OutArgument>
+                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_reviewedHitsDT">[reviewedHitsDT]</OutArgument>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="in_hitsDT">[hitsDT]</InArgument>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_reasons">[reasons]</InArgument>
+                      <InArgument x:TypeArguments="x:Double" x:Key="in_confidence">[confidence]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_docName">[docName]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <Assign sap:VirtualizedContainerService.HintSize="433.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sd:DataTable">[hitsDT]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sd:DataTable">[If(wasReviewed, reviewedHitsDT, hitsDT)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
                 </Sequence>
               </If.Else>
             </If>
