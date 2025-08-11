@@ -8,6 +8,7 @@
 .tmh/
 user.config
 ~Main.xaml
+.objects/
 
 # Output & logs
 logs/
